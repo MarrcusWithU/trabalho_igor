@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Perfil</title>
+  <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+  <div class="menu-lateral">
+    <div class="menu">Menu</div>
+    <br>
+    <button class="btn_home">🏠 Home</button>
+    <button class="btn_perfil">😊 Meu Perfil</button>
+    <button class="btn_apoiar">❤️ Seja um apoiador</button>
+    <button class="btn_denuncia">📋 Minhas Denúncias</button>
+    <button class="btn_sair">✋ Sair da conta</button>
+  </div>    
+
+  <div class="conteudo-principal">
+    <div class="perfil-container">
+      <h2 class="perfil-titulo">Meu Perfil</h2>
+
+      <div class="perfil-conteudo">
+        <div class="foto-box">
+          <label for="inputImagem">
+            <img id="previewImagem" class="foto-perfil">
+          </label>
+          <input type="file" id="inputImagem" accept="image/*">
+          <div class="editar-foto">Editar Foto ✏️</div>
+        </div>
+
+        <form class="formulario-perfil">
+          <div class="linha-campos">
+            <input type="text" placeholder="Nome social">
+            <input type="date" placeholder="Data de nascimento">
+          </div>
+          <div class="linha-campos">
+            <input type="text" placeholder="Pronomes">
+            <input type="text" placeholder="Apresentação curta">
+          </div>
+          <div class="linha-campos">
+            <input type="email" placeholder="Email">
+            <input type="text" placeholder="Cidade e Estado">
+          </div>
+          <div class="linha-campos">
+            <input type="text" placeholder="Interesses na plataforma">
+          </div>
+          <div class="alterar-dados">Salvar alterações ✏️</div>
+        </form>
+      </div>
+
+      <hr class="divisoria">
+    </div>
+
+    <h2 class="perfil-titulo">Possíveis Interesses</h2>
+  <div class="container-sugestoes">
+    <div class="sug1">
+      <button class="btn_sug1">⭐ Organizações e projetos parceiros</button>
+      <button class="btn_sug1">⭐ Filmes e séries</button>
+      <button class="btn_sug1">⭐ Eventos e ações próximas</button>
+    </div>
+    <div class="sug2">
+      <button class="btn_sug2">⭐ Perfis e criadores de conteúdos</button>
+      <button class="btn_sug2">⭐ Livros</button>
+      <button class="btn_sug2">⭐ Temas do fórum em alta</button>
+    </div> 
+    <div class="sug3">
+      <button class="btn_sug3">⭐ Podcasts</button>
+      <button class="btn_sug3">⭐ Materiais educativos</button>
+    </div>
+  </div>
+</div>
+  <div class="imagem_final">
+    <img src="imagens/perfil.png" alt="comunidade_lgbtqiap+">
+  </div>
+</body>
+</html>

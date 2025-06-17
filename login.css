@@ -1,0 +1,173 @@
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color: #ddc3e7;
+    margin: none;
+    height: 100vh;
+}
+
+body {
+  background-image: url('imagens/comunidade.png');
+  background-repeat:no-repeat;
+  background-position: bottom center;
+}
+
+/* PONTO DE INTERROGAÇÃO NO TOPO */
+.header{
+    position:absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.header .icone_circular {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #a17e8d;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.header .icone_circular img {
+    width: 70px;
+    height: 70px;
+}
+
+.header a {
+    color: #000;
+    text-decoration:underline;
+    font-size: 18px;
+    margin-bottom: auto;
+    margin-top:12px;
+}
+
+.header a:hover{
+    color:#a17e8d;
+}
+
+.header a:checked{
+    color:#000;
+}
+
+
+/* TÍTULO E SUBTÍTULO */
+.container{
+    background-color: #fff;
+    padding: 120px;
+    border-radius: 35px;
+    max-width: 600px;
+}
+
+.container .logo img{
+    width: 500px;
+    height: 250px;
+    position: relative;
+    margin-top: -100px;
+    margin-bottom: 100px;
+}
+
+ 
+/* PARTE DE LOGIN */
+.entrar{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.descrição{
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+}
+
+.email{
+    font-size: 15px;
+    width: 95%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.senha{
+    font-size: 15px;
+    width: 95%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.botão_login{
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+    padding: 12px;
+    margin: 1px 0;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.botão_login:hover{
+    background-color: #181111;
+}
+
+.criar_conta{
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #305f6e;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.outra_forma{
+    font-size: 17px;
+    text-align: center;
+    margin: 30px 0;
+    color: #888;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* BOTÃO DO GOOGLE */
+.botão_google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px;
+    background-color: #f0f0f0;
+    color: #000;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.botão_google img{
+    margin-right: 10px;
+    width: 20px;
+}
+
+.termos {
+    text-align: center;
+    margin-top: 15px;
+}
