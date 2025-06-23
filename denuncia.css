@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  display: flex;
+  height: 100vh;
+  background-color: #ddc3e7;
+}
+
+/* MENU LATERAL */
+.menu-lateral {
+  width: 220px;
+  background-color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100vh;
+  border-right: 2px solid #ccc;
+}
+
+.menu {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  width: 100%;
+  text-align: left;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #f0f0f0;
+}
+
+
+/* TÍTULO E BOTÕES*/
+.content {
+  flex: 1;
+  padding: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo_principal {
+  height: 130px;
+  object-fit: contain;
+  display: block;
+  margin-left: 30px;
+}
+
+.menu_buttons button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  border: none;
+  background-color: rgb(145, 82, 131);
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.menu_buttons button:hover {
+  background-color: rgb(95, 50, 85);
+}
+
+
+/*LINHA DIVISÓRIA*/
+.rainbow-line {
+  height: 5px;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  margin: 15px 0;
+}
+
+/*CONTEÚDO PRINCIPAL*/
+.titulo {
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;  
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.descricao {
+  display: flex;
+  flex-direction: column;
+}
+
+.descricao label {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.descricao input,
+.descricao select,
+.descricao textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  margin: 5px 0;
+}
+
+.submit-button {
+  margin-top: 30px;
+  border-radius: 6px;
+}
+
+.submit-button button {
+  background-color: #da1e6c;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.submit-button button:hover {
+    background-color: #9b194f;
+}
+
+.img {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 600px;
+  height: auto;
+}

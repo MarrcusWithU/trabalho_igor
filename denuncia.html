@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazer denúncia</title>
+    <link rel="stylesheet" href="denuncia.css">
+</head>
+<body>
+    <div class="menu-lateral">
+      <div class="menu">Menu</div>
+      <br>
+      <button class="btn_home">🏠 Home</button>
+      <button class="btn_perfil">😊 Meu Perfil</button>
+      <button class="btn_apoiar">❤️ Seja um apoiador</button>
+      <button class="btn_denuncia">📋 Minhas Denúncias</button>
+      <button class="btn_sair">✋ Sair da conta</button>
+  </div> 
+
+  <div class="content">
+  <div class="header">
+    <div>
+      <p><img src="imagens/logo.png" alt="logo principal" class="logo_principal"></p>
+    </div>
+
+    <div class="menu_buttons">
+      <button>📩 Fazer Denúncia</button>
+      <button>📞Fale Conosco</button>
+      <button>🔍 Pesquisa</button>
+    </div>
+  </div>
+
+  <div class="rainbow-line"></div>
+
+  <div class="titulo">FAZER DENÚNCIA</div>
+
+    <form>
+      <div class="form-grid">
+        <div class="descricao">
+          <label for="tipo">TIPO DE DENÚNCIA *</label>
+          <select id="tipo" required>
+            <option selected disabled>Selecione o tipo de denúncia</option>
+            <option>Homofobia</option>
+            <option>Transfobia</option>
+            <option>Bifobia</option>
+            <option>Lesbofobia</option>
+            <option>Violência física</option>
+            <option>Violência verbal</option>
+            <option>Agressão psicológica</option>
+            <option>Discriminação no trabalho</option>
+            <option>Discriminação em ambiente escolar</option>
+            <option>Negação de atendimento ou serviço</option>
+            <option>Violação de direitos humanos</option>
+            <option>Outro</option>
+          </select>
+        </div>
+
+        <div class="descricao">
+          <label for="descricao">DESCRIÇÃO DO OCORRIDO *</label>
+          <textarea id="descricao" rows="4" required placeholder="Descreva como aconteceu o ocorrido"></textarea>
+        </div>
+
+        <div class="descricao">
+          <label for="anonimo">DESEJA MANTER DE FORMA ANÔNIMA?</label>
+          <select id="anonimo">
+            <option>Sim</option>
+            <option>Não</option>
+          </select>
+        </div>
+
+        <div class="descricao">
+          <label for="local">LOCAL DA OCORRÊNCIA *</label>
+          <textarea id="local" rows="2" required placeholder="Cidade / Estado&#10;Nome do local"></textarea>
+        </div>
+
+        <div class="descricao">
+          <label for="anexos">ANEXOS (OPCIONAL)</label>
+          <input type="file" id="anexos">
+        </div>
+
+        <div class="descricao">
+          <label for="apoio">DESEJA RECEBER APOIO?</label>
+          <select id="apoio">
+            <option>Quero ser contatado por uma rede de apoio confiável</option>
+            <option>Só quero registrar a denúncia por agora</option>
+          </select>
+        </div>
+
+        <div class="descricao">
+          <label for="data">DATA DA OCORRÊNCIA *</label>
+          <input type="date" id="data" required>
+        </div>
+
+        <div class="descricao">
+          <label for="vitima">INFORMAÇÕES SOBRE A VÍTIMA (OPCIONAL)</label>
+          <textarea id="vitima" placeholder="Como a vítima está após o ocorrido?"></textarea>
+        </div>
+      </div>
+
+      <div class="submit-button">
+        <button type="submit">🧾 ENVIAR</button>
+      </div>
+    </form>
+    <img src="imagens/denuncia.png" class="img">
+  </div>  
+    
+</body>
+</html>
