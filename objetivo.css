@@ -76,35 +76,3 @@ hr {
   border-radius: 4px;
   opacity: 0.8;
 }
-
-.botões {
-    text-align: center;
-    display: flex;
-    margin: 50px 0;
-    justify-content: center;
-    gap: 60px;
-    padding-bottom: 60px;
-}
-
-.botões button{
-    font-size: 18px;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: #9d4edd;
-    color: white;
-    cursor: pointer;
-}
-
-.botões button:hover{
-    background-color: #4f2770;
-}
-
-.botões button:focus,
-.botões button:active {
-    background-color: #9d4edd !important;
-    outline: none; 
-    box-shadow: none;
-    color: white;
-    cursor: pointer;
-}

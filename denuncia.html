@@ -1,40 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fazer denúncia</title>
-    <link rel="stylesheet" href="denuncia.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fazer denúncia</title>
+  <link rel="stylesheet" href="denuncia.css" />
 </head>
+
 <body>
-    <div class="menu-lateral">
-      <div class="menu">Menu</div>
-      <br>
-      <button class="btn_home">🏠 Home</button>
-      <button class="btn_perfil">😊 Meu Perfil</button>
-      <button class="btn_apoiar">❤️ Seja um apoiador</button>
-      <button class="btn_denuncia">📋 Minhas Denúncias</button>
-      <button class="btn_sair">✋ Sair da conta</button>
-  </div> 
-
-  <div class="content">
-  <div class="header">
-    <div>
-      <p><img src="imagens/logo.png" alt="logo principal" class="logo_principal"></p>
-    </div>
-
-    <div class="menu_buttons">
-      <button>📩 Fazer Denúncia</button>
-      <button>📞Fale Conosco</button>
-      <button>🔍 Pesquisa</button>
-    </div>
+  <div class="menu-lateral">
+    <div class="menu">Menu</div>
+    <br />
+    <button class="btn_home">🏠 Home</button>
+    <button class="btn_perfil">😊 Meu Perfil</button>
+    <button class="btn_apoiar">❤️ Seja um apoiador</button>
+    <button class="btn_denuncia">📋 Minhas Denúncias</button>
+    <button class="btn_sair">✋ Sair da conta</button>
   </div>
 
-  <div class="rainbow-line"></div>
+  <div class="content">
+    <div class="header">
+      <div>
+        <p><img src="imagens/logo.png" alt="logo principal" class="logo_principal" /></p>
+      </div>
 
-  <div class="titulo">FAZER DENÚNCIA</div>
+      <div class="menu_buttons">
+        <button id="btnDenuncia">📩 Fazer Denúncia</button>
+        <button id="btnFaleConosco">📞Fale Conosco</button>
+        <button id="btnPesquisa">🔍 Pesquisa</button>
+      </div>
+    </div>
 
-    <form>
+    <div class="rainbow-line"></div>
+
+    <div class="titulo">FAZER DENÚNCIA</div>
+
+    <form id="formDenuncia">
       <div class="form-grid">
         <div class="descricao">
           <label for="tipo">TIPO DE DENÚNCIA *</label>
@@ -75,7 +77,7 @@
 
         <div class="descricao">
           <label for="anexos">ANEXOS (OPCIONAL)</label>
-          <input type="file" id="anexos">
+          <input type="file" id="anexos" />
         </div>
 
         <div class="descricao">
@@ -88,7 +90,7 @@
 
         <div class="descricao">
           <label for="data">DATA DA OCORRÊNCIA *</label>
-          <input type="date" id="data" required>
+          <input type="date" id="data" required />
         </div>
 
         <div class="descricao">
@@ -101,8 +103,95 @@
         <button type="submit">🧾 ENVIAR</button>
       </div>
     </form>
-    <img src="imagens/denuncia.png" class="img">
-  </div>  
-    
+
+    <img src="imagens/denuncia.png" class="img" />
+  </div>
+
+  <script>
+    // Menu lateral
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.btn_home').addEventListener('click', () => {
+        window.location.href = 'principal.html';
+      });
+
+      document.querySelector('.btn_perfil').addEventListener('click', () => {
+        window.location.href = 'perfil.html';
+      });
+
+      document.querySelector('.btn_denuncia').addEventListener('click', () => {
+        window.location.href = 'verdenuncia.html';
+      });
+
+      document.querySelector('.btn_sair').addEventListener('click', () => {
+        localStorage.removeItem('usuarioLogado');
+        window.location.href = 'login.html';
+      });
+    });
+  </script>
+
+  <script>
+    // Ações dos botões no canto superior direito
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("btnDenuncia").addEventListener("click", function () {
+        window.location.href = "denuncia.html"; // o nome do arquivo da página de denúncia
+      });
+
+      document.getElementById("btnFaleConosco").addEventListener("click", function () {
+        alert("Entre em contato conosco:\n\nEmail 1: contato@lgbtqiap.org\nEmail 2: suporte@lgbtqiap.org\nTelefone: (11) 99999-9999");
+      });
+
+      document.getElementById("btnPesquisa").addEventListener("click", function () {
+        alert("Funcionalidade de pesquisa ainda não implementada.");
+      });
+    });
+  </script>
+
+  <script>
+    // Envio do formulário
+    document.getElementById('formDenuncia').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const tipo = document.getElementById('tipo').value;
+      const descricao = document.getElementById('descricao').value.trim();
+      const anonimo = document.getElementById('anonimo').value;
+      const local = document.getElementById('local').value.trim();
+      const apoio = document.getElementById('apoio').value;
+      const data = document.getElementById('data').value;
+      const vitima = document.getElementById('vitima').value.trim();
+
+      const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+      const id_usuario = usuario ? usuario.id : null;
+
+      const denuncia = {
+        tipo,
+        descricao,
+        anonimo,
+        local,
+        apoio,
+        data,
+        vitima,
+        id_usuario,
+      };
+
+      fetch('http://localhost:3000/denuncias', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(denuncia),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error('Erro ao enviar denúncia');
+          return res.json();
+        })
+        .then((data) => {
+          alert(data.mensagem);
+          document.getElementById('formDenuncia').reset();
+        })
+        .catch((err) => {
+          console.error(err);
+          alert('Erro ao enviar denúncia, tente novamente.');
+        });
+    });
+  </script>
 </body>
+
 </html>

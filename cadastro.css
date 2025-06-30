@@ -1,0 +1,79 @@
+body {
+    background-image: url('imagens/comunidade.png');
+    background-repeat:no-repeat;
+    background-position: bottom center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items: flex-start;
+    padding-top: 30px;
+    background-color: #ddc3e7;
+    margin: none;
+    height: 100vh;
+}
+
+.form-container {
+    background-color: #f8e1fc;
+    padding: 0 40px 15px 40px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 15px rgba(157, 78, 221, 0.3);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.logo img {
+    max-width: 580px;
+    height: auto;
+    margin: 0;
+    border-radius: 12px;
+}
+
+hr {
+  border: none;
+  height: 5px;             
+  background: linear-gradient(to right, #9d4edd, #f72585);
+  border-radius: 4px;
+  opacity: 0.8;
+  margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-top: 30px;
+    font-weight: bold;
+    color: #4b005f;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+button {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    background-color: #9d4edd;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4f2770;
+}

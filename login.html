@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Prisma - LGBTQIAP+</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="login.css" />
 </head>
+
 <body>
     <div class="header">
         <div class="icone_circular">
-            <img src="imagens/interrogação.png" alt="Ícone ponto de interrogação">
+            <img src="imagens/interrogação.png" alt="Ícone ponto de interrogação" />
         </div>
         <a href="objetivo.html">Conheça o nosso trabalho</a>
     </div>
 
     <div class="container">
         <div class="logo">
-            <img src="imagens/logo.png" alt="logo_principal">
+            <img src="imagens/logo.png" alt="logo_principal" />
         </div>
 
         <div class="entrar">Entre com sua conta</div>
         <div class="descrição">Insira seu e-mail para fazer login</div>
 
-        <input type="email" class="email" placeholder="usuario@dominio.com">
-
-        <input type="password" class="senha" placeholder="Insira sua senha">
+        <input type="email" class="email" placeholder="usuario@dominio.com" />
+        <input type="password" class="senha" placeholder="Insira sua senha" />
 
         <button class="botão_login">Fazer Login! 😁✨</button>
 
@@ -33,11 +34,62 @@
         <div class="outra_forma"> ou continue com </div>
 
         <button class="botão_google">
-            <img src="imagens/icone_google.png" alt="Google">
+            <img src="imagens/icone_google.png" alt="Google" />
             Google
         </button>
 
-        <p class="termos">Ao fazer login, você concorda com os <a href="https://policies.google.com/terms?hl=pt-BR" target="_blank">termos de serviço</a> e <a href="https://policies.google.com/privacy?hl=pt-BR" target="_blank">política de privacidade</a></p>
+        <p class="termos">
+            Ao fazer login, você concorda com os
+            <a href="https://policies.google.com/terms?hl=pt-BR" target="_blank">termos de serviço</a> e
+            <a href="https://policies.google.com/privacy?hl=pt-BR" target="_blank">política de privacidade</a>
+        </p>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Botão "Fazer Login"
+            document.querySelector('.botão_login').addEventListener('click', function () {
+                const email = document.querySelector('.email').value.trim();
+                const senha = document.querySelector('.senha').value.trim();
+
+                if (!email || !senha) {
+                    alert("Por favor, preencha email e senha.");
+                    return;
+                }
+
+                fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, senha })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(data => { throw data; });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        alert("Login realizado com sucesso!");
+                        localStorage.setItem('usuarioLogado', JSON.stringify(data.usuario));
+                        window.location.href = "perfil.html";
+                    })
+                    .catch(error => {
+                        if (error.erro) {
+                            alert("Erro: " + error.erro);
+                        } else {
+                            alert("Erro ao fazer login.");
+                        }
+                    });
+            });
+
+            // Botão "Crie sua conta agora"
+            document.querySelector('.criar_conta').addEventListener('click', function () {
+                window.location.href = "cadastro.html";
+            });
+        });
+    </script>
 </body>
+
 </html>

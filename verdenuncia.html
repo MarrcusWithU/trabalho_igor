@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minhas Denúncias</title>
+  <link rel="stylesheet" href="verdenuncia.css" />
+</head>
+
+<body>
+  <div class="menu-lateral">
+    <div class="menu">Menu</div>
+    <br />
+    <button class="btn_home">🏠 Home</button>
+    <button class="btn_perfil">😊 Meu Perfil</button>
+    <button class="btn_apoiar">❤️ Seja um apoiador</button>
+    <button class="btn_denuncia">📋 Minhas Denúncias</button>
+    <button class="btn_sair">✋ Sair da conta</button>
+  </div>
+
+  <div class="content">
+    <div class="header">
+      <div>
+        <p><img src="imagens/logo.png" alt="logo principal" class="logo_principal" /></p>
+      </div>
+
+      <div class="menu_buttons">
+        <button id="btnDenuncia">📩 Fazer Denúncia</button>
+        <button id="btnFaleConosco">📞Fale Conosco</button>
+        <button id="btnPesquisa">🔍 Pesquisa</button>
+      </div>
+    </div>
+
+    <div class="rainbow-line"></div>
+
+    <div class="titulo">MINHAS DENÚNCIAS</div>
+
+    <div id="lista-denuncias" class="lista-denuncias">
+      <!-- as denúncias aparecem aqui quando o código estiver rodando -->
+    </div>
+  </div>
+
+  <script>
+    // Menu lateral
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.btn_home').addEventListener('click', () => {
+        window.location.href = 'principal.html';
+      });
+
+      document.querySelector('.btn_perfil').addEventListener('click', () => {
+        window.location.href = 'perfil.html';
+      });
+
+      document.querySelector('.btn_denuncia').addEventListener('click', () => {
+        window.location.href = 'verdenuncia.html';
+      });      
+
+      document.querySelector('.btn_sair').addEventListener('click', () => {
+        localStorage.removeItem('usuarioLogado');
+        window.location.href = 'login.html';
+      });
+
+      // Botões do topo
+      document.getElementById('btnDenuncia').addEventListener('click', () => {
+        window.location.href = 'denuncia.html';
+      });
+
+      document.getElementById('btnFaleConosco').addEventListener('click', () => {
+        alert("Entre em contato conosco:\n\nEmail 1: contato@lgbtqiap.org\nEmail 2: suporte@lgbtqiap.org\nTelefone: (11) 99999-9999");
+      });
+
+      document.getElementById('btnPesquisa').addEventListener('click', () => {
+        alert("Funcionalidade de pesquisa ainda não implementada.");
+      });
+
+      // Carregar denúncias do usuário
+      const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+      if (!usuario) {
+        alert('Você precisa estar logado para ver suas denúncias.');
+        window.location.href = 'login.html';
+        return;
+      }
+
+      fetch(`http://localhost:3000/denuncias/usuario/${usuario.id}`)
+        .then(res => {
+          if (!res.ok) throw new Error('Erro ao carregar denúncias');
+          return res.json();
+        })
+        .then(denuncias => {
+          const container = document.getElementById('lista-denuncias');
+          if (denuncias.length === 0) {
+            container.innerHTML = '<p>Você ainda não fez nenhuma denúncia.</p>';
+            return;
+          }
+
+          denuncias.forEach(d => {
+            const item = document.createElement('div');
+            item.classList.add('denuncia-item');
+
+            item.innerHTML = `
+              <h3>${d.tipo} - ${new Date(d.data_ocorrencia).toLocaleDateString('pt-BR')}</h3>
+              <p><strong>Descrição:</strong> ${d.descricao}</p>
+              <p><strong>Local:</strong> ${d.local}</p>
+              <p><strong>Deseja manter anônimo:</strong> ${d.anonimo ? 'Sim' : 'Não'}</p>
+              <p><strong>Deseja apoio:</strong> ${d.apoio}</p>
+              ${d.vitima ? `<p><strong>Informações da vítima:</strong> ${d.vitima}</p>` : ''}
+              <p class="data-envio">Registrado em: ${new Date(d.data_envio).toLocaleString('pt-BR')}</p>
+            `;
+
+            container.appendChild(item);
+          });
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Erro ao carregar denúncias.');
+        });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <title>Meu Perfil</title>
   <link rel="stylesheet" href="perfil.css">
 </head>
+
 <body>
   <div class="menu-lateral">
     <div class="menu">Menu</div>
@@ -14,7 +16,7 @@
     <button class="btn_apoiar">❤️ Seja um apoiador</button>
     <button class="btn_denuncia">📋 Minhas Denúncias</button>
     <button class="btn_sair">✋ Sair da conta</button>
-  </div>    
+  </div>
 
   <div class="conteudo-principal">
     <div class="perfil-container">
@@ -31,47 +33,157 @@
 
         <form class="formulario-perfil">
           <div class="linha-campos">
-            <input type="text" placeholder="Nome social">
-            <input type="date" placeholder="Data de nascimento">
+            <input type="text" id="nome" placeholder="Nome social">
+            <input type="date" id="nascimento" placeholder="Data de nascimento">
           </div>
           <div class="linha-campos">
-            <input type="text" placeholder="Pronomes">
-            <input type="text" placeholder="Apresentação curta">
+            <input type="text" id="pronomes" placeholder="Pronomes">
+            <input type="text" id="apresentacao" placeholder="Apresentação curta">
           </div>
           <div class="linha-campos">
-            <input type="email" placeholder="Email">
-            <input type="text" placeholder="Cidade e Estado">
+            <input type="email" id="email" placeholder="Email">
+            <input type="text" id="cidade" placeholder="Cidade e Estado">
           </div>
           <div class="linha-campos">
-            <input type="text" placeholder="Interesses na plataforma">
+            <input type="text" id="interesses" placeholder="Interesses na plataforma">
           </div>
           <div class="alterar-dados">Salvar alterações ✏️</div>
         </form>
+
+        <hr class="divisoria">
       </div>
 
-      <hr class="divisoria">
+      <h2 class="perfil-titulo">Possíveis Interesses</h2>
+      <div class="container-sugestoes">
+        <div class="sug1">
+          <button class="btn_sug1">⭐ Organizações e projetos parceiros</button>
+          <button class="btn_sug1">⭐ Filmes e séries</button>
+          <button class="btn_sug1">⭐ Eventos e ações próximas</button>
+        </div>
+        <div class="sug2">
+          <button class="btn_sug2">⭐ Perfis e criadores de conteúdos</button>
+          <button class="btn_sug2">⭐ Livros</button>
+          <button class="btn_sug2">⭐ Temas do fórum em alta</button>
+        </div>
+        <div class="sug3">
+          <button class="btn_sug3">⭐ Podcasts</button>
+          <button class="btn_sug3">⭐ Materiais educativos</button>
+        </div>
+      </div>
+    </div>
+    <div class="imagem_final">
+      <img src="imagens/perfil.png" alt="comunidade_lgbtqiap+">
     </div>
 
-    <h2 class="perfil-titulo">Possíveis Interesses</h2>
-  <div class="container-sugestoes">
-    <div class="sug1">
-      <button class="btn_sug1">⭐ Organizações e projetos parceiros</button>
-      <button class="btn_sug1">⭐ Filmes e séries</button>
-      <button class="btn_sug1">⭐ Eventos e ações próximas</button>
-    </div>
-    <div class="sug2">
-      <button class="btn_sug2">⭐ Perfis e criadores de conteúdos</button>
-      <button class="btn_sug2">⭐ Livros</button>
-      <button class="btn_sug2">⭐ Temas do fórum em alta</button>
-    </div> 
-    <div class="sug3">
-      <button class="btn_sug3">⭐ Podcasts</button>
-      <button class="btn_sug3">⭐ Materiais educativos</button>
-    </div>
-  </div>
-</div>
-  <div class="imagem_final">
-    <img src="imagens/perfil.png" alt="comunidade_lgbtqiap+">
-  </div>
+
+    <script>
+      // Ações para o menu lateral
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".btn_home").addEventListener("click", function () {
+          window.location.href = "principal.html";
+        });
+
+        document.querySelector(".btn_perfil").addEventListener("click", function () {
+          window.location.href = "perfil.html";
+        });
+
+        document.querySelector('.btn_denuncia').addEventListener('click', () => {
+          window.location.href = 'verdenuncia.html';
+        });
+
+        document.querySelector(".btn_sair").addEventListener("click", function () {
+          localStorage.removeItem("usuarioLogado");
+          window.location.href = "login.html";
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+        if (!usuario) {
+          alert("Usuário não autenticado.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        // Preenche apenas os campos disponíveis no banco
+        document.getElementById("nome").value = usuario.nome || "";
+        document.getElementById("email").value = usuario.email || "";
+        document.getElementById("nascimento").value = usuario.nascimento ? usuario.nascimento.split("T")[0] : "";
+      });
+    </script>
+
+    <script>
+      document.querySelector(".alterar-dados").addEventListener("click", function () {
+        const nome = document.getElementById("nome").value.trim();
+        const nascimento = document.getElementById("nascimento").value;
+        const email = document.getElementById("email").value.trim();
+
+        const pronomes = document.getElementById("pronomes").value.trim();
+        const apresentacao = document.getElementById("apresentacao").value.trim();
+        const cidade = document.getElementById("cidade").value.trim();
+        const interesses = document.getElementById("interesses").value.trim();
+
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+        fetch(`http://localhost:3000/perfil/${usuario.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            nome, nascimento, email,
+            pronomes, apresentacao, cidade, interesses
+          })
+        })
+          .then(res => {
+            if (!res.ok) throw new Error("Erro ao salvar perfil");
+            return res.json();
+          })
+          .then(() => {
+            alert("Perfil atualizado com sucesso!");
+
+            // Atualiza manualmente todos os dados no localStorage
+            const dadosAtualizados = {
+              ...usuario,
+              nome,
+              nascimento,
+              email,
+              pronomes,
+              apresentacao,
+              cidade,
+              interesses
+            };
+
+            localStorage.setItem("usuarioLogado", JSON.stringify(dadosAtualizados));
+          })
+          .catch(err => {
+            console.error(err);
+            alert("Erro ao atualizar o perfil.");
+          });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+        if (!usuario) {
+          alert("Usuário não autenticado.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        document.getElementById("nome").value = usuario.nome || "";
+        document.getElementById("email").value = usuario.email || "";
+        document.getElementById("nascimento").value = usuario.nascimento ? usuario.nascimento.split("T")[0] : "";
+
+        document.getElementById("pronomes").value = usuario.pronomes || "";
+        document.getElementById("apresentacao").value = usuario.apresentacao || "";
+        document.getElementById("cidade").value = usuario.cidade || "";
+        document.getElementById("interesses").value = usuario.interesses || "";
+      });
+    </script>
 </body>
+
 </html>
